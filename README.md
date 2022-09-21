@@ -1,19 +1,22 @@
 # Flet-Color-Browser
 
-## Table of contents:
-- [Introduction]()
-- [Source of Inspiration]()
-- [Screen captures]()
-- [How to get started?]()
-- [How to deploy to Fly.io?]()
-- [Issues/Contribution]()
+![GitHub top language](https://img.shields.io/github/languages/top/ndonkoHenri/Flet-Color-Browser)
+![GitHub language count](https://img.shields.io/github/languages/count/ndonkoHenri/Flet-Color-Browser)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/ndonkoHenri/Flet-Color-Browser?color=ry)
 
+## Table of contents:
+- [Introduction](#what-is-this-about-introduction)
+- [Source of Inspiration](#source-of-inspiration)
+- [Screen captures](#screen-captures)
+- [How to get started?](#how-to-get-started)
+- [How to deploy to Fly.io?](#how-to-deploy-to-flyio)
+- [Issues/Contribution](#issuescontribution)
 
 
 ### What is this about? (Introduction)
 
  A simple but sophisticated tool(Web and desktop UI) for easy color selection when developing [Flet](flet.dev) applications.
-Here is a link to the online/web version of this tool -> <u>[flet-colors-browser.fly.io](flet-colors-browser.fly.io)</u>
+Here is a link to the online/web version of this tool -> <u>[flet-colors-browser.fly.dev](https://flet-colors-browser.fly.dev/)</u>
 
 ### Source of Inspiration
 
@@ -27,25 +30,25 @@ Below are some captures I made of the tool in execution.
 - _**On PC:**_
   - _Dark Mode_
         <br><br>
-      <image src= "assets/captures/pc_dark.png" align="center">
+      ![pc_dark](https://user-images.githubusercontent.com/98978078/191587712-3c8fb14d-8ed0-4045-ab97-7759be04791c.png)
         <br><br>
   - _Light Mode_
         <br><br>
-      <image src= "assets/captures/pc_dark.png" align="center">
-        
+      ![pc_light](https://user-images.githubusercontent.com/98978078/191587748-11d44ba2-03f1-4bbc-9abd-233ad8ff3c50.png)
 
 - _**In a web browser:**_
   - _Dark Mode_
         <br><br>
-      <image src= "assets/captures/web_dark.png" align="center">
+      ![web_dark](https://user-images.githubusercontent.com/98978078/191587793-68c9f173-d8f9-497a-8bd0-8c88ebf3045d.png)
+
         <br><br>
   - _Light Mode_
         <br><br>
-      <image src= "assets/captures/web_light.png" align="center">
-        <br><br>
+      ![web_light](https://user-images.githubusercontent.com/98978078/191587819-4d4b0770-7f2f-460c-83d3-5c6a518fcac4.png)
+    <br><br>
   - **Video**
         <br><br>
-      <video width="320" height="240" autoplay> <source src="assets/captures/web_light.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+              [Link to video-demo](https://user-images.githubusercontent.com/98978078/191587444-d66a4185-c677-441c-a747-ce6f6f58774e.mp4)
 
 ### How to get started?
 
@@ -61,7 +64,6 @@ Pretty easy and straight forward!
 
       python main.py
 - That's all! Easy and Straight-forward right?
-
 
 ### How to deploy to Fly.io?
 
