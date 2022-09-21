@@ -8,14 +8,13 @@ stack: python 3.10
 
 environment:
   GITHUB_TOKEN:
-    secure: Ti46nPnZgFh0nRteU6ma0EhJnCTW7PaMn9hnnewZl4gBFPyRQnXNCwGog02+MRLX
+    secure: N5aGlRzv9QFj5KCToqpa7jbJH0s5iJazkcve+jUqXgZtE2o1M1MFfn93l0mHyLH4
 
 install:
 - pip install -r requirements.txt
 
 build_script:
-- pyinstaller main.py --name Flet-colors-browser --noconsole --noconfirm --onefile --icon icon.png
-
+- pyinstaller main.py --name Flet-colors-browser --noconsole --noconfirm --onefile
 test: off
 
 # Publish artifacts to GitHub Releases on "tag" builds
