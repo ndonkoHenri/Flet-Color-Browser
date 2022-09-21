@@ -15,7 +15,7 @@
 
 ### What is this about? (Introduction)
 
- A simple but sophisticated tool(Web and desktop UI) for easy color selection when developing [Flet](flet.dev) applications.
+ A simple but sophisticated tool(Web and desktop UI) for easy color selection when developing [Flet](https://flet.dev/) applications.
 Here is a link to the online/web version of this tool -> <u>[flet-colors-browser.fly.dev](https://flet-colors-browser.fly.dev/)</u>
 
 ### Source of Inspiration
@@ -67,7 +67,7 @@ Pretty easy and straight forward!
 
 ### How to deploy to Fly.io?
 
-A detailed version of how to deploy [Flet](https://flet.dev/) apps on [Fly.io](https://fly.io/) could be found <u>[here](https://flet.dev/docs/guides/python/deploying-web-app/fly-io)</u>.
+A detailed version of how to deploy [Flet](https://github.com/flet-dev/flet) apps on [Fly.io](https://fly.io/) could be found <u>[here](https://flet.dev/docs/guides/python/deploying-web-app/fly-io)</u>.
 
 Deploy:
 
