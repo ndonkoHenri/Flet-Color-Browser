@@ -1,11 +1,21 @@
 # Flet-Color-Browser
 
-### What is this?
+## Table of contents:
+- [Introduction]()
+- [Source of Inspiration]()
+- [Screen captures]()
+- [How to get started?]()
+- [How to deploy to Fly.io?]()
+- [Issues/Contribution]()
+
+
+
+### What is this about? (Introduction)
 
  A simple but sophisticated tool(Web and desktop UI) for easy color selection when developing [Flet](flet.dev) applications.
 Here is a link to the online/web version of this tool -> <u>[flet-colors-browser.fly.io](flet-colors-browser.fly.io)</u>
 
-### Inspiration
+### Source of Inspiration
 
 I decided to build up this tool after looking at the [Flet-Icons-Browser]() - a simple browser which eases Icon selection when developing Flet apps . 
 This tool is actually a refactored-clone(or fork if you want) of it. 
@@ -53,7 +63,6 @@ Pretty easy and straight forward!
 - That's all! Easy and Straight-forward right?
 
 
-
 ### How to deploy to Fly.io?
 
 A detailed version of how to deploy [Flet](https://flet.dev/) apps on [Fly.io](fly.io) could be found <u>[here](https://flet.dev/docs/guides/python/deploying-web-app/fly-io)</u>.
@@ -72,7 +81,7 @@ Re-deploy:
 
 
 ### Issues/Contribution
-I tried my best to make this project simple and easy to understand, but if you have problems/issues when using this :(, 
+I tried my best to make this project simple and easy to understand, but if you have problems/issues while using this :(, 
 then you are free to raise an issue and I will happily respond.
 
 If you instead want to contribute(new features, bug/typo fixes, etc), just fork this project and make a pull request. :)
