@@ -1,4 +1,3 @@
-# import logging
 import os
 import time
 from itertools import islice
@@ -22,10 +21,7 @@ from flet import (
     FloatingActionButton, IconButton, ProgressBar, ButtonStyle
 )
 
-# logging.basicConfig(level=logging.INFO)
-
 os.environ["FLET_WS_MAX_MESSAGE_SIZE"] = "6000000"
-
 
 class ColorBrowser(UserControl):
     def __init__(self, expand=False, height=500):
