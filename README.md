@@ -4,6 +4,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/ndonkoHenri/Flet-Color-Browser)
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/ndonkoHenri/Flet-Color-Browser?color=ry)
 
+_From my experience, working with colors is not that easy._
 ## Table of contents:
 - [Introduction](#what-is-this-about-introduction)
 - [Source of Inspiration](#source-of-inspiration)
