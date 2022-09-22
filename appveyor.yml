@@ -1,0 +1,69 @@
+image:
+- Visual Studio 2019
+- macOS
+- Ubuntu
+
+skip_branch_with_pr: true
+stack: python 3.10
+
+environment:
+  GITHUB_TOKEN:
+    secure: Ti46nPnZgFh0nRteU6ma0EhJnCTW7PaMn9hnnewZl4gBFPyRQnXNCwGog02+MRLX
+
+install:
+- pip install -r requirements.txt
+
+build_script:
+- pyinstaller main.py --name Flet-colors-browser --noconsole --noconfirm --onefile --icon icon.png
+
+test: off
+
+# Publish artifacts to GitHub Releases on "tag" builds
+deploy:
+  provider: GitHub
+  auth_token: $(GITHUB_TOKEN)
+  on:
+    APPVEYOR_REPO_TAG: true
+
+#
+#   Windows package
+#
+for:
+-
+  matrix:
+    only:
+    - image: Visual Studio 2019
+
+  after_build:
+  - 7z a Flet-colors-browser-windows.zip %CD%\dist\*.exe
+
+  artifacts:
+  - path: Flet-colors-browser-windows.zip
+
+#
+#   macOS package
+#
+-
+  matrix:
+    only:
+    - image: macOS
+
+  after_build:
+  - tar -czvf Flet-colors-browser-macos.tar.gz -C dist Flet-colors-browser.app
+
+  artifacts:
+  - path: Flet-colors-browser-macos.tar.gz
+
+#
+#   Linux package
+#
+-
+  matrix:
+    only:
+    - image: Ubuntu
+
+  after_build:
+  - tar -czvf Flet-colors-browser-linux.tar.gz -C dist Flet-colors-browser
+
+  artifacts:
+  - path: Flet-colors-browser-linux.tar.gz
