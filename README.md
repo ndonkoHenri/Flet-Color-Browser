@@ -17,7 +17,7 @@ Here is a link to the online/web version of this tool -> <u>[flet-colors-browser
 
 ### Source of Inspiration
 
-I decided to build up this tool after looking at the [Flet-Icons-Browser]() - a simple browser which eases Icon selection when developing Flet apps . 
+I decided to build up this tool after looking at the [Flet-Icons-Browser](https://github.com/flet-dev/examples/tree/main/python/apps/icons-browser) - a simple browser which eases Icon selection when developing Flet apps . 
 This tool is actually a refactored-clone(or fork if you want) of it. 
 I just added my personal UI touch and included more comments in the code :) 
 
@@ -45,13 +45,13 @@ Below are some captures I made of the tool in execution.
         <br><br>
   - **Video**
         <br><br>
-      <video src= "assets/captures/web_video.mp4" align="center">
+      <video width="320" height="240" autoplay> <source src="assets/captures/web_light.mp4" type="video/mp4">Your browser does not support the video tag.</video>
 
 ### How to get started?
 
 Pretty easy and straight forward!
 
-- Start by cloning and unzipping this repo: [how-to]()
+- Start by cloning and unzipping this repo: [how-to](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 - Enter the directory
 
         cd Flet-Color-Browser
@@ -65,7 +65,7 @@ Pretty easy and straight forward!
 
 ### How to deploy to Fly.io?
 
-A detailed version of how to deploy [Flet](https://flet.dev/) apps on [Fly.io](fly.io) could be found <u>[here](https://flet.dev/docs/guides/python/deploying-web-app/fly-io)</u>.
+A detailed version of how to deploy [Flet](https://flet.dev/) apps on [Fly.io](https://fly.io/) could be found <u>[here](https://flet.dev/docs/guides/python/deploying-web-app/fly-io)</u>.
 
 Deploy:
 
