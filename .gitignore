@@ -14,3 +14,4 @@ env/
 venv/
 ENV/
 /assets/captures/
+/dist/
