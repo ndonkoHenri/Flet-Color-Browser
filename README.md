@@ -53,8 +53,9 @@ Below are some captures I made of the tool in execution.
 
 ### How to get started?
 
-Pretty easy and straight forward!
+**Easiest:** You can just download an archive(for Windows, MacOS and Linux only) from the [releases](https://github.com/ndonkoHenri/Flet-Color-Browser/releases) section, extract this and run the standalone executable file(~25Mo) found in it.
 
+**Hardest:**
 - Start by cloning and unzipping this repo: [how-to](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 - Enter the directory
 
