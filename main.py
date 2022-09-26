@@ -175,6 +175,7 @@ def main(page: Page):
     page.title = "Flet colors browser"
     # page.window_always_on_top = True
     page.theme_mode = "dark"
+    page.splash = ProgressBar(visible=False)
 
     def change_theme(e):
         """
@@ -183,23 +184,21 @@ def main(page: Page):
 
         :param e: The event that triggered the function
         """
-        p_bar.visible = True
+        page.splash.visible = True
         page.update()
         page.theme_mode = "light" if page.theme_mode == "dark" else "dark"
-        p_bar.visible = False
+        page.splash.visible = False
         theme_button.selected = not theme_button.selected
         time.sleep(1.2)
         page.update()
 
     # a progress bar shown when changing theme
-    p_bar = ProgressBar(bar_height=3.5, visible=False)
     # button to change theme_mode (from dark to light mode, or the reverse)
     theme_button = IconButton(icons.LIGHT_MODE, on_click=change_theme, icon_size=40, selected_icon=icons.DARK_MODE,
                               tooltip="change theme",
                               style=ButtonStyle(color={"selected": colors.BLACK, "": colors.WHITE}))
 
     page.add(
-        p_bar,
         Row(controls=[Text("Flet Color Browser", style="displayMedium", color=colors.BLUE),
                       theme_button], alignment="spaceAround"),
         ColorBrowser(expand=True)
