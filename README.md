@@ -1,5 +1,7 @@
 # Flet-Color-Browser
 
+![AppVeyor](https://img.shields.io/appveyor/build/ndonkoHenri/flet-color-browser)
+![Platform](https://img.shields.io/badge/platform-browser%20%7C%20PWA%20%7C%20windows%20%7C%20macos%20%7C%20linux-lightgrey)
 ![GitHub top language](https://img.shields.io/github/languages/top/ndonkoHenri/Flet-Color-Browser)
 ![GitHub language count](https://img.shields.io/github/languages/count/ndonkoHenri/Flet-Color-Browser)
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/ndonkoHenri/Flet-Color-Browser?color=ry)
