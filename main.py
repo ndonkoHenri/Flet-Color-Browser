@@ -1,7 +1,4 @@
-import flet
-import time
-from flet import colors, icons, Text, ProgressBar, ButtonStyle, IconButton, AppBar, Page, TextButton, Row
-from flet.control_event import ControlEvent
+import flet as ft
 
 # importing version 1
 from v1 import ColorBrowser1
@@ -9,14 +6,10 @@ from v1 import ColorBrowser1
 from v2 import ColorBrowser2
 
 
-def main(page: Page):
-    """
-    App's entry point.
+def main(page: ft.Page):
+    """App's entry point."""
 
-    :param page: The page object
-    :type page: Page
-    """
-    page.title = "Flet Colors Browser"
+    page.title = "Colors Browser"
     # page.window_always_on_top = True
 
     # set the minimum width and height of the window.
@@ -30,66 +23,71 @@ def main(page: Page):
     page.window_width = 562
     page.window_height = 720
 
-    # Creating a progress bar that will be used to show the user that the app is busy doing something.
-    page.splash = ProgressBar(visible=False)
+    page.splash = ft.ProgressBar(visible=False)
 
     def change_theme(e):
-        """
-        When the button(to change theme) is clicked, the progress bar is made visible, the theme is changed,
-        the progress bar is made invisible, and the page is updated
-
-        :param e: The event that triggered the function
-        """
-        page.splash.visible = True
-        page.update()
+        """It changes the theme of the page from dark to light and vice versa."""
         page.theme_mode = "light" if page.theme_mode == "dark" else "dark"
-        page.splash.visible = False
         theme_icon_button.selected = not theme_icon_button.selected
-        time.sleep(1.2)
         page.update()
 
-    def moveto_callback(e: ControlEvent):
-        # Making the progress bar visible and updating the page.
-        page.splash.visible = True
-        page.update()
-
-        # Changing the version of the page. (Removes the currently shown version, and adds the next version to the page
-        last_version = page.controls.pop(0)
-        if last_version == version_1:
-            page.controls.insert(0, version_2)
-        else:
-            page.controls.insert(0, version_1)
-
-        # Changing the text of the button to "Move to Version 2" if the text is "Move to Version 1", and vice versa.
-        e.control.text = "Move to Version 2" if e.control.text == "Move to Version 1" else "Move to Version 1"
-
-        # Making the progress bar invisible, waiting for 1.2 seconds, then updating the page.
-        page.splash.visible = False
-        time.sleep(1.2)
-        page.update()
+    def handle_nav_bar_change(e: ft.ControlEvent):
+        """
+        The handle_nav_bar_change function is called when the user clicks on a button in the nav bar.
+        It clears all controls from the page, and then adds only one control to it: The screen that corresponds to
+        the index of the button clicked.
+        """
+        page.controls.clear()
+        page.add(screens[int(e.data)])
 
     # button to change theme_mode (from dark to light mode, or the reverse)
-    theme_icon_button = IconButton(icons.DARK_MODE, selected_icon=icons.LIGHT_MODE, icon_color=colors.BLACK,
-                                   icon_size=35, tooltip="change theme", on_click=change_theme,
-                                   style=ButtonStyle(color={"": colors.BLACK, "selected": colors.WHITE}, ), )
+    theme_icon_button = ft.IconButton(
+        ft.icons.DARK_MODE,
+        selected_icon=ft.icons.LIGHT_MODE,
+        icon_color=ft.colors.BLACK,
+        icon_size=35,
+        tooltip="change theme",
+        on_click=change_theme,
+        style=ft.ButtonStyle(
+            color={"": ft.colors.BLACK, "selected": ft.colors.WHITE},
+        ),
+    )
 
-    moveto_button = TextButton("Move to Version 1", on_click=moveto_callback, tooltip="change version",
-                               icon=icons.KEYBOARD_BACKSPACE_ROUNDED, icon_color=colors.ERROR, )
+    page.appbar = ft.AppBar(
+        title=ft.Text("Colors Browser", color="white"),
+        center_title=True, bgcolor="blue",
+        actions=[theme_icon_button],
+    )
 
-    page.appbar = AppBar(title=Text("Colors Browser", color="white"), center_title=True, bgcolor="blue",
-                         actions=[theme_icon_button], )
+    page.navigation_bar = ft.NavigationBar(
+        selected_index=1,
+        destinations=[
+            ft.NavigationDestination(
+                icon=ft.icons.LOOKS_ONE_OUTLINED,
+                selected_icon=ft.icons.LOOKS_ONE,
+                label="Version 1"
+            ),
+            ft.NavigationDestination(
+                icon=ft.icons.LOOKS_TWO_OUTLINED,
+                selected_icon=ft.icons.LOOKS_TWO,
+                label="Version 2"
+            ),
+        ],
+        on_change=handle_nav_bar_change,
+        )
 
     # Creating two versions of the page, one with the colors in a grid, and the other with the colors in a list.
     version_1 = ColorBrowser1()
     version_2 = ColorBrowser2(page)
 
+    screens = [version_1, version_2]
+
     page.add(
-        version_2,
-        Row([moveto_button], alignment="start", )
+        screens[1]
     )
 
 
 # (running the app)
 if __name__ == "__main__":
-    flet.app(target=main)
-# OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
+    ft.app(target=main)
+    # OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
