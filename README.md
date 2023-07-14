@@ -12,7 +12,7 @@
 - [Source of Inspiration](#source-of-inspiration)
 - [Screen captures](#screen-captures)
 - [How to get started?](#how-to-get-started)
-- [How to deploy to Fly.io?](#how-to-deploy-to-flyio)
+- [How to deploy?](#how-to-deploy)
 - [Issues/Contribution](#issuescontribution)
 
 
@@ -30,7 +30,7 @@ I just added my personal UI touch and included more comments in the code :)
 ### Screen captures
 This tool has two versions: One using a [GridView](https://flet.dev/docs/controls/gridview) to display the colors, and another using a [ListView](https://flet.dev/docs/controls/listview) in [Tabs](https://flet.dev/docs/controls/tabs). 
 
-Below are some captures I made of the tool in execution.
+Below are some OLD captures I made of the tool in execution.
 
 - _**Version 1:**_
   - _Dark Mode_
@@ -62,35 +62,23 @@ Below are some captures I made of the tool in execution.
 
 ![How to Install as PWA](https://miro.medium.com/max/720/1*BQ5FlcpuLTOBfF5vLvv6Bg.gif)
 
-**Second-Easiest Way:** You can just download an archive(for Windows, macOS and Linux only) from the [releases](https://github.com/ndonkoHenri/Flet-Color-Browser/releases) section, extract this and run the standalone executable file(~25Mo) found in it.
-
+**Second-Easiest Way:** 
+- Try the app online from here: 
+- You can just download an archive(for Windows, macOS and Linux only) from the [releases](https://github.com/ndonkoHenri/Flet-Color-Browser/releases) section, extract this and run the standalone executable file(~25Mo) found in it.
 
 **Hardest Way:**
 - Start by cloning and unzipping this repo: [how-to](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 - Enter the directory
 
         cd Flet-Color-Browser
-- Install the requirements(only Flet is required):
-    `pip install flet`
+- Install the requirements:
+    `pip install requirements.txt -r`
 - Run the `main.py` file
 
       python main.py
 
-### How to deploy to Fly.io?
-
-A detailed version of how to deploy [Flet](https://github.com/flet-dev/flet) apps on [Fly.io](https://fly.io/) could be found <u>[here](https://flet.dev/docs/guides/python/deploying-web-app/fly-io)</u>.
-
-Deploy:
-
-    flyctl deploy
-
-Check deployment:
-
-    flyctl status
-
-Re-deploy:
-
-    flyctl deploy --no-cache
+### How to Deploy?
+See [this](https://ndonkohenri.medium.com/deploying-a-flet-app-for-free-on-cloudflare-pages-e56ecc6ce450) article to deploy this flet app and all others you have for freeee.
 
 
 ### Issues/Contribution
