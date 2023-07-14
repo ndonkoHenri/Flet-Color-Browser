@@ -1,31 +1,15 @@
 import os
-import time
 from itertools import islice
-import flet
-from flet import (
-    Column, Container, GridView, Icon, Page, Row,
-    SnackBar, Text, TextButton, TextField, UserControl, alignment, colors,
-    icons, FloatingActionButton, IconButton, ProgressBar, ButtonStyle, AppBar
-)
+import flet as ft
 
 # Increasing the maximum message size that can be sent over the websocket.
 os.environ["FLET_WS_MAX_MESSAGE_SIZE"] = "6000000"
 
 
-class ColorBrowser1(UserControl):
-    def __init__(self, expand=True, height=500):
-        """
-        If the expand parameter is set to True, then the expand attribute of the object is set to True. Otherwise, the
-        height attribute of the object is set to the value of the height parameter.
-
-        :param expand: If True, the widget will expand to fill its parent, defaults to True (optional)
-        :param height: The height of the widget, defaults to 500 (optional)
-        """
+class ColorBrowser1(ft.UserControl):
+    def __init__(self):
         super().__init__()
-        if expand:
-            self.expand = expand
-        else:
-            self.height = height
+        self.expand = True
 
     def build(self):
         def batches(iterable, batch_size):
@@ -42,7 +26,7 @@ class ColorBrowser1(UserControl):
         # fetch all icon constants from colors.py module and store them in a dict(colors_dict)
         colors_dict = dict()
         list_started = False
-        for key, value in vars(colors).items():
+        for key, value in vars(ft.colors).items():
             if key == "PRIMARY":
                 # 'PRIMARY' is the first color-variable (our starting point)
                 list_started = True
@@ -51,9 +35,13 @@ class ColorBrowser1(UserControl):
                 colors_dict[key] = value
 
         # Creating a text field
-        search_txt = TextField(
-            expand=1, hint_text="Enter keyword and press search button", autofocus=True,
-            on_submit=lambda e: display_colors(e.control.value), tooltip="search field", label="Color Search Field"
+        search_txt = ft.TextField(
+            expand=1,
+            hint_text="Enter keyword and press search button",
+            autofocus=True,
+            on_submit=lambda e: display_colors(e.control.value),
+            tooltip="search field",
+            label="Color Search Field"
         )
 
         def search_click(e):
@@ -63,15 +51,15 @@ class ColorBrowser1(UserControl):
             display_colors(search_txt.value)
 
         # Creating a row with a search text field and a search button.
-        search_query = Row(
-            [search_txt, FloatingActionButton(icon=icons.SEARCH, on_click=search_click, tooltip="search")]
+        search_query = ft.Row(
+            [search_txt, ft.FloatingActionButton(icon=ft.icons.SEARCH, on_click=search_click, tooltip="search")]
         )
 
         # Creating a grid view with 10 columns and 150 pixels as the maximum extent of each column.
-        search_results = GridView(
+        search_results = ft.GridView(
             expand=1, runs_count=10, max_extent=150, spacing=5, run_spacing=5, child_aspect_ratio=1,
         )
-        status_bar = Text()
+        status_bar = ft.Text()
 
         def copy_to_clipboard(e):
             """
@@ -83,7 +71,7 @@ class ColorBrowser1(UserControl):
             color_key = e.control.data
             print("Copied to clipboard:", color_key)
             self.page.set_clipboard(e.control.data)
-            self.page.show_snack_bar(SnackBar(Text(f"Copied {color_key}"), open=True))
+            self.page.show_snack_bar(ft.SnackBar(ft.Text(f"Copied {color_key}"), open=True))
 
         def search_colors(search_term: str):
             """
@@ -118,21 +106,21 @@ class ColorBrowser1(UserControl):
                     flet_color_key = f"colors.{color_key}"
 
                     search_results.controls.append(
-                        TextButton(
-                            content=Container(
-                                content=Column(
+                        ft.TextButton(
+                            content=ft.Container(
+                                content=ft.Column(
                                     [
-                                        Icon(name=icons.RECTANGLE, size=38, color=colors_dict[color_key], ),
-                                        Text(
+                                        ft.Icon(name=ft.icons.RECTANGLE, size=38, color=colors_dict[color_key], ),
+                                        ft.Text(
                                             value=f"{colors_dict[color_key]}", size=14, width=100,
-                                            no_wrap=True, text_align="center", color=colors_dict[color_key],
+                                            no_wrap=True, text_align=ft.TextAlign.CENTER, color=colors_dict[color_key],
                                         ),
                                     ],
                                     spacing=5,
-                                    alignment="center",
-                                    horizontal_alignment="center",
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                 ),
-                                alignment=alignment.center,
+                                alignment=ft.alignment.center,
                             ),
                             tooltip=f"{flet_color_key}\nClick to copy to a clipboard",
                             on_click=copy_to_clipboard,
@@ -145,11 +133,11 @@ class ColorBrowser1(UserControl):
             # It checks if the search results are empty, and if they are, it shows a snack bar some message
             if len(search_results.controls) == 0:
                 # if no color was found containing the user's search term
-                self.page.show_snack_bar(SnackBar(Text("No colors found"), open=True))
+                self.page.show_snack_bar(ft.SnackBar(ft.Text("No colors found"), open=True))
             search_query.disabled = False
             self.update()
 
-        return Column(
+        return ft.Column(
             [
                 search_query,
                 search_results,
@@ -159,60 +147,57 @@ class ColorBrowser1(UserControl):
         )
 
 
-def main(page: Page):
-    page.title = "Flet Colors Browser V1"
-    # page.window_always_on_top = True
-
-    # set the width and height of the window.
-    page.window_width = 562
-    page.window_height = 720
-
-    # Setting the theme of the page to light mode.
-    page.theme_mode = "light"
-
-    # set the minimum width and height of the window.
-    page.window_min_width = 245
-    page.window_min_height = 406
-
-    # Creating a progress bar that will be used to show the user that the app is busy doing something.
-    page.splash = ProgressBar(visible=False)
-
-    def change_theme(e):
-        """
-        When the theme_icon_button is clicked, the progress bar is made visible, the theme is changed,
-        the progress bar is made invisible, and the page is updated
-
-        :param e: The event that triggered the function
-        """
-        # It makes the progress bar visible.
-        page.splash.visible = True
-        page.update()
-        page.theme_mode = "light" if page.theme_mode == "dark" else "dark"
-        page.splash.visible = False
-        theme_icon_button.selected = not theme_icon_button.selected
-        time.sleep(1.2)
-        page.update()
-
-    # button to change theme_mode (from dark to light mode, or the reverse)
-    theme_icon_button = IconButton(icons.DARK_MODE, selected_icon=icons.LIGHT_MODE, icon_color=colors.BLACK,
-                                   icon_size=35, tooltip="change theme",
-                                   on_click=change_theme,
-                                   style=ButtonStyle(color={"": colors.BLACK, "selected": colors.WHITE}, ), )
-
-    # Creating an AppBar object and assigning it to the page.appbar attribute.
-    page.appbar = AppBar(title=Text("Colors Browser V1", color="white"), center_title=True, bgcolor="blue",
-                         actions=[theme_icon_button], )
-
-    # Creating an instance of the ColorBrowser1 class.
-    version_1 = ColorBrowser1()
-
-    # adds the color browser to the page
-    page.add(
-        version_1
-    )
-
-
 # (running the app)
 if __name__ == "__main__":
-    flet.app(target=main)
-# OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
+    def main(page: ft.Page):
+        page.title = "Flet Colors Browser V1"
+        # page.window_always_on_top = True
+
+        # set the width and height of the window.
+        page.window_width = 562
+        page.window_height = 720
+
+        # Setting the theme of the page to light mode.
+        page.theme_mode = "light"
+
+        # set the minimum width and height of the window.
+        page.window_min_width = 245
+        page.window_min_height = 406
+
+        def change_theme(e):
+            page.theme_mode = "light" if page.theme_mode == "dark" else "dark"
+            theme_icon_button.selected = not theme_icon_button.selected
+            page.update()
+
+        # button to change theme_mode (from dark to light mode, or the reverse)
+        theme_icon_button = ft.IconButton(
+            ft.icons.DARK_MODE,
+            selected_icon=ft.icons.LIGHT_MODE,
+            icon_color=ft.colors.BLACK,
+            icon_size=35,
+            tooltip="change theme",
+            on_click=change_theme,
+            style=ft.ButtonStyle(
+                color={"": ft.colors.BLACK, "selected": ft.colors.WHITE},
+            ),
+        )
+
+        # Creating an AppBar object and assigning it to the page.appbar attribute.
+        page.appbar = ft.AppBar(
+            title=ft.Text("Colors Browser V1", color="white"),
+            center_title=True,
+            bgcolor="blue",
+            actions=[theme_icon_button],
+        )
+
+        # Creating an instance of the ColorBrowser1 class.
+        version_1 = ColorBrowser1()
+
+        # adds the color browser to the page
+        page.add(
+            version_1
+        )
+
+
+    ft.app(target=main)
+    # OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
