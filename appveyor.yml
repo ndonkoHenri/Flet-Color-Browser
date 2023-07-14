@@ -15,7 +15,7 @@ install:
 - pip install pyinstaller
 
 build_script:
-- flet pack main.py --name Flet-Colors-Browser --icon icon.png --product-name Flet-Colors-Browser --product-version "2.0" --copyright "Copyright (c) 2022 TheEthicalBoy Inc."
+- flet pack main.py --name Flet-Colors-Browser --product-name Flet-Colors-Browser --product-version "2.0" --copyright "Copyright (c) 2022 TheEthicalBoy Inc."
 
 test: off
 
