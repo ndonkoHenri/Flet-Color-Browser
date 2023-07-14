@@ -74,7 +74,7 @@ def main(page: ft.Page):
             ),
         ],
         on_change=handle_nav_bar_change,
-        )
+    )
 
     # Creating two versions of the page, one with the colors in a grid, and the other with the colors in a list.
     version_1 = ColorBrowser1()
@@ -87,7 +87,5 @@ def main(page: ft.Page):
     )
 
 
-# (running the app)
-if __name__ == "__main__":
-    ft.app(target=main, view=ft.WEB_BROWSER)
-    # OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
+ft.app(target=main, view=ft.WEB_BROWSER)
+# OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
