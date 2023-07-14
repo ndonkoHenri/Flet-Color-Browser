@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0175C2",
-  "description": "Browse all the possible colors used in the Flet python framework.",
+  "description": "Makes color selection easy and simple.",
   "orientation": "natural",
   "prefer_related_applications": false,
   "icons": [
