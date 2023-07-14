@@ -89,5 +89,5 @@ def main(page: ft.Page):
 
 # (running the app)
 if __name__ == "__main__":
-    ft.app(target=main)
+    ft.app(target=main, view=ft.WEB_BROWSER)
     # OR flet.app(target=main, view=flet.WEB_BROWSER, port=5050) then open http://localhost:5050/
