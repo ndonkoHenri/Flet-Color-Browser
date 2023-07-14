@@ -1,0 +1,70 @@
+image:
+- Visual Studio 2019
+- macOS
+- Ubuntu
+
+skip_branch_with_pr: true
+stack: python 3.10
+
+environment:
+  GITHUB_TOKEN:
+    secure: iL/1Mx78gXHkbeSqsj1N7TyM4pvz3sihozkTOA1PXmCF1FGBM2EzG1seaZ+ca4yZ
+
+install:
+- pip install -r requirements.txt
+- pip install pyinstaller
+
+build_script:
+- flet pack main.py --name Flet-Colors-Browser --icon icon.png --product-name Flet-Colors-Browser --product-version "2.0" --copyright "Copyright (c) 2022 TheEthicalBoy Inc."
+
+test: off
+
+# Publish artifacts to GitHub Releases on "tag" builds
+deploy:
+  provider: GitHub
+  auth_token: $(GITHUB_TOKEN)
+  on:
+    APPVEYOR_REPO_TAG: true
+
+#
+#   Windows package
+#
+for:
+-
+  matrix:
+    only:
+    - image: Visual Studio 2019
+
+  after_build:
+  - 7z a Flet-Colors-Browser-windows.zip %CD%\dist\*.exe
+
+  artifacts:
+  - path: Flet-Colors-Browser-windows.zip
+
+#
+#   macOS package
+#
+-
+  matrix:
+    only:
+    - image: macOS
+
+  after_build:
+  - tar -czvf Flet-Colors-Browser-macos.tar.gz -C dist Flet-Colors-Browser.app
+
+  artifacts:
+  - path: Flet-Colors-Browser-macos.tar.gz
+
+#
+#   Linux package
+#
+-
+  matrix:
+    only:
+    - image: Ubuntu
+
+  after_build:
+  - tar -czvf Flet-Colors-Browser-linux.tar.gz -C dist Flet-Colors-Browser
+
+  artifacts:
+  - path: Flet-Colors-Browser-linux.tar.gz
