@@ -71,7 +71,7 @@ class ColorBrowser1(ft.UserControl):
             color_key = e.control.data
             print("Copied to clipboard:", color_key)
             self.page.set_clipboard(e.control.data)
-            self.page.show_snack_bar(ft.SnackBar(ft.Text(f"Copied {color_key}"), open=True))
+            self.page.show_snack_bar(ft.SnackBar(ft.Text(f"Copied {color_key}")))
 
         def search_colors(search_term: str):
             """
@@ -133,7 +133,7 @@ class ColorBrowser1(ft.UserControl):
             # It checks if the search results are empty, and if they are, it shows a snack bar some message
             if len(search_results.controls) == 0:
                 # if no color was found containing the user's search term
-                self.page.show_snack_bar(ft.SnackBar(ft.Text("No colors found"), open=True))
+                self.page.show_snack_bar(ft.SnackBar(ft.Text("No colors found")))
             search_query.disabled = False
             self.update()
 

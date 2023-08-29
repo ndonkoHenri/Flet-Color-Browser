@@ -24,7 +24,7 @@ class Tile(ft.Container):
             """
             print("Copied to clipboard:", self.color_text)
             self.page.set_clipboard(self.color_text)
-            self.page.show_snack_bar(ft.SnackBar(ft.Text(f"Copied {self.color_text}!"), open=True))
+            self.page.show_snack_bar(ft.SnackBar(ft.Text(f"Copied {self.color_text}!")))
 
         self.on_click = click_event
 
