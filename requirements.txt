@@ -1,2 +1,1 @@
-flet 
-flet_pyodide < 0.9.0
+flet-pyodide < 0.9.0
